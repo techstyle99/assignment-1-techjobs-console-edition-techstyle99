@@ -39,7 +39,8 @@ public class TechJobs {
                 String columnChoice = getUserSelection("List", columnChoices);
 
                 if (columnChoice.equals("all")) {
-                    printJobs(JobData.findAll());
+                    // guess no need for import key; getting data from .csv file
+                    printJobs(JobData.findAll()); // JpaRepository method: return all entities that are saved to the database
                 } else {
 
                     ArrayList<String> results = JobData.findAll(columnChoice);
@@ -77,7 +78,7 @@ public class TechJobs {
         Boolean validChoice = false;
         String[] choiceKeys = new String[choices.size()];
 
-        // Put the choices in an ordered structure so we can
+        // Put the choices in an ordered structure, so we can
         // associate an integer with each one
         int i = 0;
         for (String choiceKey : choices.keySet()) {
@@ -119,7 +120,18 @@ public class TechJobs {
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-
-        System.out.println("printJobs is not implemented yet");
+//        System.out.println("printJobs is not implemented yet");
+        System.out.println(someJobs);
+        if (someJobs.size() < 1) {
+            System.out.print("No Results");
+        } else {
+            for (HashMap<String, String> jobDict : someJobs) {
+                System.out.println("\n*****");
+                for (String key : jobDict.keySet()) {
+                    System.out.println(key + ": " + jobDict.get(key));
+                }
+                System.out.println("*****");
+            }
+        }
     }
 }
