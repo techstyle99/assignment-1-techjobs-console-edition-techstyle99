@@ -54,7 +54,15 @@ public class JobData {
         loadData();
 
         // Bonus mission; normal version returns allJobs
-        return new ArrayList<>(allJobs);
+        ArrayList<HashMap<String, String>> allJobsCopy = new ArrayList<>();
+        for (HashMap<String, String> row: allJobs){
+            HashMap<String, String> myMap = new HashMap<>();
+            for (String column: row.keySet()){
+                myMap.put(column, row.get(column));
+            }
+            allJobsCopy.add(myMap);
+        }
+        return allJobsCopy;
     }
 
     /**
@@ -99,7 +107,17 @@ public class JobData {
         loadData();
 
         // TODO - implement this method
-        return null;
+        value = value.toLowerCase();
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+        for (HashMap<String, String> row: allJobs){
+            for (String currentColumn : row.keySet()){
+                if (row.get(currentColumn).toLowerCase().contains(value)){
+                    jobs.add(row);
+                    break;
+                }
+            }
+        }
+        return jobs;
     }
 
     /**

@@ -39,7 +39,7 @@ public class TechJobs {
                 String columnChoice = getUserSelection("List", columnChoices);
 
                 if (columnChoice.equals("all")) {
-                    // guess no need for import key; getting data from .csv file
+                    // JobData class
                     printJobs(JobData.findAll()); // JpaRepository method: return all entities that are saved to the database
                 } else {
 
@@ -121,7 +121,7 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 //        System.out.println("printJobs is not implemented yet");
-        System.out.println(someJobs);
+//        System.out.println(someJobs);
         if (someJobs.size() < 1) {
             System.out.print("No Results");
         } else {
